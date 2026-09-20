@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nil15"
+version = "0.1.0"
+description = "Research toolkit for forecasting whether football matches remain goalless through 14:59."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "httpx[socks]>=0.27,<1",
+  "joblib>=1.4,<2",
+  "pandas>=2.2,<3",
+  "scikit-learn>=1.5,<2",
+  "typer>=0.12,<1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1"]
+
+[project.scripts]
+nil15 = "nil15.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nil15"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
